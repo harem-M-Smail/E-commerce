@@ -12,11 +12,14 @@ import ProductDetailsPage, {
   productDetailsLoader,
 } from "./pages/products/ProductDetailsPage";
 import ProductsPage, { productsLoader } from "./pages/products/ProductsPage";
+import NotFound from "./pages/notfound/NotFound";
+import ErrorPage from "./pages/errorpage/ErrorPage";
+
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<Root />}>
+        <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
           <Route index element={<Home />} />
           <Route
             path="products"
@@ -29,6 +32,8 @@ const App = () => {
             loader={productDetailsLoader}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
+
       </>
     )
   );
@@ -46,6 +51,3 @@ const App = () => {
   );
 };
 export default App;
-
-// fix the cors problem
-// decide about using the blogs template in mui
